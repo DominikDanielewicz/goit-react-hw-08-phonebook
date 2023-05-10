@@ -4,7 +4,7 @@ import CircleLoader from 'react-spinners/ClipLoader';
 const Loader = () => {
   return (
     <div>
-      <CircleLoader color="#ffa500" />
+      <CircleLoader color="#000000" />
     </div>
   );
 };

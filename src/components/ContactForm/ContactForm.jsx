@@ -1,7 +1,7 @@
 //Commented code in this file is the previous version of checking if the contact that we are adding is already in contacts
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { addContact } from 'redux/operations';
+import { addContact } from 'redux/tasks/operations';
 import css from './ContactForm.module.css';
 // import { selectContacts } from './../../redux/selectors';
 // import Notiflix from 'notiflix';
