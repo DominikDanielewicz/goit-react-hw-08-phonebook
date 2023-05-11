@@ -43,14 +43,12 @@ const contactsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         const index = state.contacts.findIndex(
-          contact => contact.contactId === action.payload.contactId
+          contact => contact.id === action.payload.contactId
         );
         state.contacts.splice(index, 1);
       })
       .addCase(logOut.fulfilled, state => {
-        state.items = [];
-        state.error = null;
-        state.isLoading = false;
+        state.contacts = [];
       })
       .addMatcher(isPendingAction, handlePending)
       .addMatcher(isRejectedAction, handleRejected);

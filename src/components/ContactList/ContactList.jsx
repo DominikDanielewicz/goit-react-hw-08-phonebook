@@ -13,10 +13,10 @@ const ContactList = () => {
       {filteredContacts.length ? (
         filteredContacts.map(contact => (
           <ContactListElement
-            key={contact.contactId}
-            id={contact.contactId}
+            key={contact.id}
+            id={contact.id}
             name={contact.name}
-            phone={contact.phone}
+            number={contact.number}
           />
         ))
       ) : (
@@ -31,7 +31,7 @@ ContactList.propTypes = {
     propTypes.shape({
       key: propTypes.string,
       name: propTypes.string.isRequired,
-      phone: propTypes.string.isRequired,
+      number: propTypes.string.isRequired,
       deleteContact: propTypes.func,
     })
   ),

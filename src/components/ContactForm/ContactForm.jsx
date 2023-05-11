@@ -3,36 +3,21 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addContact } from 'redux/tasks/operations';
 import css from './ContactForm.module.css';
-// import { selectContacts } from './../../redux/selectors';
-// import Notiflix from 'notiflix';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
-  // const contacts = useSelector(selectContacts);
 
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.target;
-    // const names = contacts.map(contact => contact.name.toLowerCase());
-    // const newContactName = form.elements.name.value.trim().toLowerCase();
-
-    // if (names.find(name => name === newContactName)) {
-    //   form.reset();
-    //   return Notiflix.Notify.failure(
-    //     `Contact with name '${newContactName}' is already in contacts.`
-    //   );
-    // }
 
     dispatch(
       addContact({
         name: form.elements.name.value,
-        phone: form.elements.number.value,
+        number: form.elements.number.value,
       })
     );
     form.reset();
-    // Notiflix.Notify.success(
-    //   `Contact with name '${newContactName}' has been added succesfully to contacts list.`
-    // );
   };
 
   return (

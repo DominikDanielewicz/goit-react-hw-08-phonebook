@@ -14,7 +14,7 @@ const ContactListElement = props => {
   return (
     <li className={css.contactElement}>
       <p>{props.name}</p>
-      <p>{props.phone}</p>
+      <p>{props.number}</p>
       <button
         className={css.contactElement__button}
         type="button"
@@ -28,7 +28,7 @@ const ContactListElement = props => {
 
 ContactListElement.propTypes = {
   name: propTypes.string.isRequired,
-  phone: propTypes.string.isRequired,
+  number: propTypes.string.isRequired,
 };
 
 export default ContactListElement;
