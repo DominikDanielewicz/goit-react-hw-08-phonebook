@@ -8,7 +8,6 @@ const LoginPage = () => {
       <Helmet>
         <title>Login</title>
       </Helmet>
-      <h1>Login</h1>
       <LoginForm />
     </>
   );
