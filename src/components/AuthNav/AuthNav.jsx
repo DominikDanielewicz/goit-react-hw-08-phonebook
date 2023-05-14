@@ -6,9 +6,12 @@ import Button from '@mui/material/Button';
 import { useTheme } from '@mui/material/styles';
 import { useAuth } from 'hooks';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useDispatch } from 'react-redux';
+import { logOut } from 'redux/auth/operations';
 
 export const AuthNav = () => {
   const { isLoggedIn } = useAuth();
+  const dispatch = useDispatch();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -31,12 +34,15 @@ export const AuthNav = () => {
               <MenuItem component={Link} to="/login">
                 <Typography textAlign="center">Log in</Typography>
               </MenuItem>
+              <MenuItem component={Link} to="/login">
+                <Typography textAlign="center">Log in</Typography>
+              </MenuItem>
             </>
           )}
         </>
       ) : (
         <>
-          {!isLoggedIn && (
+          {!isLoggedIn ? (
             <>
               <Button
                 component={Link}
@@ -53,6 +59,14 @@ export const AuthNav = () => {
                 Log in
               </Button>
             </>
+          ) : (
+            <Button
+              component={Link}
+              onClick={() => dispatch(logOut())}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              Log out
+            </Button>
           )}
         </>
       )}

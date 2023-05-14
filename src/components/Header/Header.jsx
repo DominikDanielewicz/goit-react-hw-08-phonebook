@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { UserMenu } from '../UserMenu/UserMenu';
 import { AuthNav } from '../AuthNav/AuthNav.jsx';
 import { useAuth } from 'hooks';
+import { useDispatch } from 'react-redux';
+import { logOut } from 'redux/auth/operations';
 
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
@@ -18,10 +20,9 @@ import MenuItem from '@mui/material/MenuItem';
 import ContactPhoneRounded from '@mui/icons-material/ContactPhoneRounded';
 import { Link } from 'react-router-dom';
 
-const settings = ['Profile'];
-
 const Header = () => {
   const { isLoggedIn } = useAuth();
+  const dispatch = useDispatch();
 
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -180,11 +181,14 @@ const Header = () => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {settings.map(setting => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">Profile</Typography>
+                </MenuItem>
+                {isLoggedIn && (
+                  <MenuItem onClick={() => dispatch(logOut())}>
+                    <Typography textAlign="center">Log out</Typography>
                   </MenuItem>
-                ))}
+                )}
               </Menu>
             </Box>
           </Toolbar>
