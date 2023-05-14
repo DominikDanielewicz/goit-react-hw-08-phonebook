@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { UserMenu } from '../UserMenu/UserMenu';
-import { AuthNav } from '../AuthNav/AuthNav.jsx';
 import { useAuth } from 'hooks';
 import { useDispatch } from 'react-redux';
 import { logOut } from 'redux/auth/operations';
@@ -19,9 +18,11 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import ContactPhoneRounded from '@mui/icons-material/ContactPhoneRounded';
 import { Link } from 'react-router-dom';
+import { MainNav } from 'components/MainNav/MainNav';
+import { ResponsiveNav } from 'components/ResponsiveNav/ResponsiveNav';
 
 const Header = () => {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, user } = useAuth();
   const dispatch = useDispatch();
 
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -61,7 +62,6 @@ const Header = () => {
               sx={{
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
-                fontFamily: 'monospace',
                 fontWeight: 700,
                 letterSpacing: '.3rem',
                 color: 'inherit',
@@ -100,14 +100,14 @@ const Header = () => {
                   display: { xs: 'block', md: 'none' },
                 }}
               >
-                {isLoggedIn ? <UserMenu /> : <AuthNav />}
+                <ResponsiveNav />
               </Menu>
             </Box>
             <ContactPhoneRounded
               sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}
             />
             <Typography
-              variant="h5"
+              variant="h6"
               noWrap
               component={Link}
               to="/"
@@ -115,7 +115,6 @@ const Header = () => {
                 mr: 2,
                 display: { xs: 'flex', md: 'none' },
                 flexGrow: 1,
-                fontFamily: 'monospace',
                 fontWeight: 700,
                 letterSpacing: '.3rem',
                 color: 'inherit',
@@ -156,41 +155,52 @@ const Header = () => {
                 display: { xs: 'none', md: 'flex' },
               }}
             >
-              {isLoggedIn ? <UserMenu /> : <AuthNav />}
+              {isLoggedIn ? <UserMenu /> : <MainNav />}
             </Box>
 
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">Profile</Typography>
-                </MenuItem>
-                {isLoggedIn && (
+            {isLoggedIn && (
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar alt={user.name} src="/static/images/avatar/2.jpg" />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: '45px' }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  <Typography
+                    variant="body1"
+                    noWrap
+                    sx={{
+                      py: 1,
+                      px: 2,
+                      display: { xs: 'flex', md: 'none' },
+                      fontWeight: 400,
+                      textDecoration: 'none',
+                      color: 'inherit',
+                    }}
+                  >
+                    Welcome, {user.name}
+                  </Typography>
                   <MenuItem onClick={() => dispatch(logOut())}>
                     <Typography textAlign="center">Log out</Typography>
                   </MenuItem>
-                )}
-              </Menu>
-            </Box>
+                </Menu>
+              </Box>
+            )}
           </Toolbar>
         </Container>
       </AppBar>
