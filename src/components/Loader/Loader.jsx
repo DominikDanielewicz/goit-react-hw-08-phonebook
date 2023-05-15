@@ -1,11 +1,12 @@
 import React from 'react';
-import CircleLoader from 'react-spinners/ClipLoader';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 const Loader = () => {
   return (
-    <div>
-      <CircleLoader color="#000000" />
-    </div>
+    <Box sx={{ mt: 2, mb: 2, display: 'flex', justifyContent: 'center' }}>
+      <CircularProgress />
+    </Box>
   );
 };
 

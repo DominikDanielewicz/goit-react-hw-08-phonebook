@@ -26,7 +26,7 @@ const LoginForm = () => {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container maxWidth="xs">
       <Box
         sx={{
           marginTop: 8,
@@ -38,7 +38,7 @@ const LoginForm = () => {
         <Typography component="h1" variant="h5">
           Log into your account
         </Typography>
-        <Box component="form" onSubmit={handleLogin} noValidate sx={{ mt: 1 }}>
+        <Box component="form" onSubmit={handleLogin} sx={{ mt: 1 }}>
           <TextField
             margin="normal"
             required

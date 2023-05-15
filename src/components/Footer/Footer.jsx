@@ -24,7 +24,7 @@ const Footer = () => {
       <Typography align="center" variant="body2" color="text.secondary">
         {'Copyright © '}
         <Link component={NavLink} color="inherit" to="/">
-          Your Website
+          Phonebook
         </Link>{' '}
         {new Date().getFullYear()}
         {'.'}

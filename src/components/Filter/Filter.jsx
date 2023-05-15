@@ -1,8 +1,12 @@
 import React from 'react';
-import css from './Filter.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { setContactsFilter } from 'redux/tasks/filterSlice';
 import { selectContactsFilter } from 'redux/tasks/selectors';
+
+import TextField from '@mui/material/TextField';
+import { Container } from '@mui/material';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -13,20 +17,34 @@ const Filter = () => {
   };
 
   return (
-    <div className={css.filter}>
-      <h3>Find contacts by name:</h3>
-      <input
-        className={css.filter__field}
-        id="filter"
-        value={filter}
-        onChange={filterChangeHandler}
-        type="text"
-        name="filter"
-        pattern="^[a-zA-ZĄąĆćĘęŁłŃńÓóŚśŹźŻż]+(([' \-][a-zA-ZĄąĆćĘęŁłŃńÓóŚśŹźŻż])?[a-zA-ZĄąĆćĘęŁłŃńÓóŚśŹźŻż]*)*$"
-        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-        required
-      />
-    </div>
+    <>
+      <Container maxWidth="xs">
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Typography component="h2" variant="h5">
+            Contacts
+          </Typography>
+          <TextField
+            margin="normal"
+            fullWidth
+            id="filter"
+            value={filter}
+            type="text"
+            label="Contact filter"
+            name="filter"
+            autoFocus
+            required
+            onChange={filterChangeHandler}
+          />
+        </Box>
+      </Container>
+    </>
   );
 };
 
