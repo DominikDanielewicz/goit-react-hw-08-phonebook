@@ -35,20 +35,6 @@ const ContactList = () => {
           </Grid>
         </Box>
       </Container>
-      {/* <ul className={css.contactlist}>
-        {filteredContacts.length ? (
-          filteredContacts.map(contact => (
-            <ContactListElement
-              key={contact.id}
-              id={contact.id}
-              name={contact.name}
-              number={contact.number}
-            />
-          ))
-        ) : (
-          <p>Your phonebook is empty. Add your contacts</p>
-        )}
-      </ul> */}
     </>
   );
 };
